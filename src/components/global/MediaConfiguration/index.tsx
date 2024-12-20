@@ -27,6 +27,8 @@ type Props = {
 };
 
 const MediaConfiguration = ({ state, user }: Props) => {
+  const {} = useStudioSettings();
+
   return <form className='flex flex-col h-full w-full relative gap-y-5'></form>;
 };
 
