@@ -6,6 +6,18 @@ import tsConfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    emptyOutDir: true,
+    manifest: true,
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        studio: path.resolve(__dirname, 'studio.html'),
+        web_cam_main: path.resolve(__dirname, 'webcam.html'),
+      },
+    },
+  },
   server: {
     proxy: {
       '/api': {
