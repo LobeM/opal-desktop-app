@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -124,6 +124,17 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
     win = null;
+    studio = null;
+    floatingWebCam = null;
+  }
+});
+
+ipcMain.on('closeApp', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+    win = null;
+    studio = null;
+    floatingWebCam = null;
   }
 });
 
