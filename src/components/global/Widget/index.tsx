@@ -38,6 +38,7 @@ const Widget = () => {
   useEffect(() => {
     if (user && user.id) {
       fetchUserProfile(user.id).then((res) => setProfile(res));
+      fetchMediaResources();
     }
   }, [user]);
 
