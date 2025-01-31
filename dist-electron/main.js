@@ -31,7 +31,7 @@ function createWindow() {
   });
   studio = new BrowserWindow({
     width: 400,
-    height: 50,
+    height: 300,
     minHeight: 70,
     maxHeight: 400,
     minWidth: 300,
@@ -112,15 +112,14 @@ ipcMain.handle("getSources", async () => {
     fetchWindowIcons: true,
     types: ["window", "screen"]
   });
-  console.log("🔴 DISPLAYS", data);
   return data;
 });
-ipcMain.on("media-sources", (event, payload) => {
-  console.log(event);
+ipcMain.on("media-sources", (_, payload) => {
+  console.log("EVENT:📸 media sources", payload);
   studio == null ? void 0 : studio.webContents.send("profile-received", payload);
 });
-ipcMain.on("resize-studio", (event, payload) => {
-  console.log(event);
+ipcMain.on("resize-studio", (_, payload) => {
+  console.log("EVENT:🎬 resize studio", payload);
   if (payload.shrink) {
     studio == null ? void 0 : studio.setSize(400, 100);
   }
@@ -128,8 +127,8 @@ ipcMain.on("resize-studio", (event, payload) => {
     studio == null ? void 0 : studio.setSize(400, 250);
   }
 });
-ipcMain.on("hide-plugin", (event, payload) => {
-  console.log(event);
+ipcMain.on("hide-plugin", (_, payload) => {
+  console.log("EVENT: hide plugin", payload);
   win == null ? void 0 : win.webContents.send("hide-plugin", payload);
 });
 app.on("activate", () => {
